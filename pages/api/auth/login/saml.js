@@ -8,7 +8,7 @@ console.log("saml 1 passou");
 export default async (req, res) => {
   if (req.method === "POST") {
     const { data, headers } = await axios.get("/api/auth/csrf", {
-      baseURL: "https://next-auth-saml-tlry.vercel.app/",
+      baseURL: "https://next-auth-saml-tlry.vercel.app",
     });
     console.log("saml 2 passou");
     const { csrfToken } = data;
