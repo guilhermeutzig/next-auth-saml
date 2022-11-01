@@ -25,6 +25,8 @@ export default async (req, res) => {
     );
   }
 
+  res.send("here");
+
   // const createLoginRequestUrl = (identityProvider, options = {}) =>
   //   new Promise((resolve, reject) => {
   //     serviceProvider.create_login_request_url(
