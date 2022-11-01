@@ -52,7 +52,7 @@ export default async (req, res) => {
 
   try {
     const loginUrl = await createLoginRequestUrl(identityProvider);
-    console.log("saml 6 passou");
+    console.log("saml 6 passou", loginUrl);
     return res.redirect(loginUrl);
   } catch (error) {
     console.error(error);
