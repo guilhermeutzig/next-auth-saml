@@ -1,4 +1,14 @@
 import axios from "axios";
+
+const directory = path.resolve(process.cwd(), "certs");
+const private_key = path.join(directory, "key.pem");
+const certificate = path.join(directory, "cert.pem");
+const idp_key = path.join(directory, "idp_key.pem");
+
+console.log("private_key", private_key);
+console.log("certificate", certificate);
+console.log("idp_key", idp_key);
+
 import { identityProvider } from "../../../../lib/identityProvider";
 import { serviceProvider } from "../../../../lib/serviceProvider";
 
