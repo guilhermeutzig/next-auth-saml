@@ -1,5 +1,6 @@
 import axios from "axios";
 import path from "path";
+import fs from "fs-extra";
 
 const directory = path.resolve(process.cwd(), "certs");
 const private_key = path.join(directory, "key.pem");
