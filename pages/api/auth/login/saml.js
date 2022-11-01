@@ -1,4 +1,5 @@
 import axios from "axios";
+import path from "path";
 
 const directory = path.resolve(process.cwd(), "certs");
 const private_key = path.join(directory, "key.pem");

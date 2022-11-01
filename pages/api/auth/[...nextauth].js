@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import Providers from "next-auth/providers";
+import path from "path";
 
 const directory = path.resolve(process.cwd(), "certs");
 const private_key = path.join(directory, "key.pem");
@@ -8,7 +9,7 @@ const idp_key = path.join(directory, "idp_key.pem");
 
 console.log("private_key", private_key);
 console.log("certificate", certificate);
-console.log("ipd_key", ipd_key);
+console.log("ipd_key", idp_key);
 
 import { identityProvider } from "../../../lib/identityProvider";
 import { serviceProvider } from "../../../lib/serviceProvider";
