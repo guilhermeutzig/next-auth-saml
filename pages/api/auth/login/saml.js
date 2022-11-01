@@ -1,33 +1,22 @@
 import axios from "axios";
-import path from "path";
-import fs from "fs-extra";
-
-const directory = path.resolve(process.cwd(), "certs");
-const private_key = path.join(directory, "key.pem");
-const certificate = path.join(directory, "cert.pem");
-const idp_key = path.join(directory, "idp_key.pem");
-
-console.log("saml private_key", private_key);
-console.log("saml certificate", certificate);
-console.log("saml idp_key", idp_key);
-
-console.log("saml idp_key", fs.readFileSync(idp_key).toString());
-console.log("saml certificate", fs.readFileSync(certificate).toString());
-console.log("saml private_key", fs.readFileSync(private_key).toString());
 
 import { identityProvider } from "../../../../lib/identityProvider";
 import { serviceProvider } from "../../../../lib/serviceProvider";
 
+console.log("saml 1 passou");
+
 export default async (req, res) => {
   if (req.method === "POST") {
     const { data, headers } = await axios.get("/api/auth/csrf", {
-      baseURL: "http://localhost:3000",
+      baseURL: "https://next-auth-saml-tlry.vercel.app/",
     });
+    console.log("saml 2 passou");
     const { csrfToken } = data;
 
     const encodedSAMLBody = encodeURIComponent(JSON.stringify(req.body));
 
     res.setHeader("set-cookie", headers["set-cookie"] ?? "");
+    console.log("saml 3 passou");
     return res.send(
       `<html>
         <body>
@@ -43,6 +32,8 @@ export default async (req, res) => {
     );
   }
 
+  console.log("saml 4 passou");
+
   const createLoginRequestUrl = (identityProvider, options = {}) =>
     new Promise((resolve, reject) => {
       serviceProvider.create_login_request_url(
@@ -57,11 +48,15 @@ export default async (req, res) => {
       );
     });
 
+  console.log("saml 5 passou");
+
   try {
     const loginUrl = await createLoginRequestUrl(identityProvider);
+    console.log("saml 6 passou");
     return res.redirect(loginUrl);
   } catch (error) {
     console.error(error);
+    console.log("saml 7 passou");
     return res.sendStatus(500);
   }
 };
